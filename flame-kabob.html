@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flame Kabob – Sorour Askarzadeh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --coral: #D85A30; --coral-light: #FAECE7; --coral-dark: #993C1D;
+    --amber: #BA7517; --amber-light: #FAEEDA;
+    --purple: #534AB7; --purple-light: #EEEDFE;
+    --ink: #1a1a1a; --ink-soft: #4a4a4a;
+    --bg: #FAFAF8; --border: rgba(0,0,0,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .nav-back { font-size: 0.88rem; color: var(--ink-soft); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--coral); }
+  .hero { padding: 10rem 4rem 6rem; background: var(--amber-light); position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 80px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+  .hero-inner { max-width: 800px; }
+  .project-tag { display: inline-flex; align-items: center; background: white; color: var(--amber); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem; border: 1px solid rgba(186,117,23,0.2); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; color: var(--ink); margin-bottom: 1.2rem; }
+  .hero-sub { font-size: 1.1rem; font-weight: 300; line-height: 1.75; color: var(--ink-soft); max-width: 600px; margin-bottom: 2rem; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
+  .meta-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.2rem; }
+  .meta-value { font-size: 0.9rem; color: var(--ink); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--coral); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--coral-dark); transform: translateY(-1px); }
+  .content { max-width: 860px; margin: 0 auto; padding: 4rem; }
+  .section-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.6rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--ink); margin-bottom: 1.2rem; line-height: 1.2; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; margin-top: 2rem; }
+  p { font-size: 1rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 1.2rem; }
+  ul { padding-left: 1.2rem; margin-bottom: 1.2rem; }
+  ul li { font-size: 0.95rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 0.4rem; }
+  .case-section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
+  .case-section:last-child { border-bottom: none; }
+  .figure-block { margin: 2rem 0; }
+  .figure-block img { width: 100%; border-radius: 16px; border: 1px solid var(--border); display: block; }
+  .figure-caption { font-size: 0.78rem; color: var(--ink-soft); text-align: center; margin-top: 0.6rem; font-style: italic; }
+  .figure-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; align-items: start; }
+  .figure-grid-2 img { width: 100%; border-radius: 12px; border: 1px solid var(--border); display: block; }
+  .highlight-box { background: var(--amber-light); border-left: 4px solid var(--amber); border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin: 1.5rem 0; }
+  .highlight-box p { margin: 0; color: var(--ink); font-style: italic; }
+  .process-steps { display: flex; margin: 2rem 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .process-step { flex: 1; padding: 1rem; text-align: center; border-right: 1px solid var(--border); background: white; }
+  .process-step:last-child { border-right: none; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; color: var(--coral); margin-bottom: 0.3rem; }
+  .step-name { font-size: 0.78rem; font-weight: 500; color: var(--ink); }
+  footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 1.5rem; font-size: 0.78rem; margin-top: 4rem; }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 8rem 1.5rem 4rem; }
+    .content { padding: 2rem 1.5rem; }
+    .figure-grid-2 { grid-template-columns: 1fr; }
+    .process-steps { flex-direction: column; }
+    .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .process-step:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">SA.</a>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+</nav>
 
+<div class="hero">
+  <div class="hero-inner">
+    <div class="project-tag">UX LAND Boot Camp · Summer 2023</div>
+    <h1>Flame Kabob<br>Las Vegas</h1>
+    <p class="hero-sub">Website redesign for a Persian and Middle Eastern restaurant, focused on rebuilding trust, improving information architecture, and creating a seamless online ordering experience.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">Jun – Aug 2023 (3 months)</div></div>
+      <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UX/UI Designer</div></div>
+      <div class="meta-item"><div class="meta-label">Team</div><div class="meta-value">Sorour Askarzadeh, Shamim Validi</div></div>
+      <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma, Miro, Photoshop, Canva</div></div>
+    </div>
+    <a href="https://www.figma.com/proto/h5AGqmauV76hZjt4Gmhnls/Flame-kobab?node-id=385-1847&t=HZxNo2XBxLWgQVnw-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=385%3A1847&show-proto-sidebar=1" target="_blank" class="btn-primary">View Figma Prototype →</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="case-section">
+    <div class="section-label">Overview</div>
+    <h2>The Project</h2>
+    <p>Flame Kabob is a Persian and Middle Eastern restaurant in Las Vegas. Despite having an online ordering website, the poorly designed interface meant users could not complete their orders successfully. We redesigned it into a trustworthy, visually appealing, and easy-to-use experience.</p>
+    <div class="figure-block">
+      <img src="flame-kabob.gif" alt="Flame Kabob redesigned website">
+      <div class="figure-caption">Flame Kabob redesigned website</div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Process</div>
+    <h2>Design Process</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div class="step-name">Discover</div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-name">Define</div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-name">Develop</div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-name">Deliver</div></div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Discover</div>
+    <h2>Understanding the Problem</h2>
+    <h3>Heuristic Evaluation</h3>
+    <p>We began with a heuristic evaluation of the existing website, identifying key usability issues: no search bar, disorganized homepage, non-functional menu, poor color palette, and inconsistent typography.</p>
+    <h3>User Interviews</h3>
+    <p>We interviewed 12 users to discover what customers need when visiting a restaurant's website and what information they require to complete an order.</p>
+    <h3>Competitive Analysis</h3>
+    <p>We analyzed 8 ethnic restaurant websites for content and features.</p>
+    <div class="figure-block">
+      <img src="fk_image1.png" alt="Competitive analysis">
+      <div class="figure-caption">Competitive analysis of ethnic restaurant websites</div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Define</div>
+    <h2>Key Insights</h2>
+    <h3>Affinity Diagram</h3>
+    <p>Organizing interview data through affinity mapping surfaced three core user needs: finding a restaurant they can rely on, thorough dish descriptions, and a photo for each food item.</p>
+    <div class="figure-block">
+      <img src="fk_image3.png" alt="Affinity diagram">
+      <div class="figure-caption">Affinity diagram organizing user research findings</div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Develop</div>
+    <h2>Building the Solution</h2>
+    <h3>Site Map</h3>
+    <div class="figure-block">
+      <img src="fk_image4.png" alt="Site map">
+      <div class="figure-caption">Site map validated through 12 closed card sorting tests</div>
+    </div>
+    <h3>Task and User Flow</h3>
+    <div class="figure-block">
+      <img src="fk_image2.png" alt="User flow">
+      <div class="figure-caption">User flow for the ordering process</div>
+    </div>
+    <h3>Wireframes</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="fk_image9.jpg" alt="Homepage wireframe">
+        <div class="figure-caption">Homepage wireframe</div>
+      </div>
+      <div>
+        <img src="fk_image8.jpg" alt="Menu wireframe">
+        <div class="figure-caption">Menu wireframe</div>
+      </div>
+    </div>
+    <div class="figure-grid-2">
+      <div>
+        <img src="fk_image10.jpg" alt="Product page wireframe">
+        <div class="figure-caption">Product page wireframe</div>
+      </div>
+      <div>
+        <img src="fk_image14.jpg" alt="Checkout wireframe">
+        <div class="figure-caption">Checkout wireframe</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Deliver</div>
+    <h2>High-Fidelity Prototype</h2>
+    <div class="figure-grid-2">
+      <div>
+        <img src="fk_image13.jpg" alt="Homepage high-fidelity">
+        <div class="figure-caption">Homepage</div>
+      </div>
+      <div>
+        <img src="fk_image7.jpg" alt="Menu high-fidelity">
+        <div class="figure-caption">Menu</div>
+      </div>
+    </div>
+    <div class="figure-grid-2">
+      <div>
+        <img src="fk_image5.png" alt="Product page high-fidelity">
+        <div class="figure-caption">Product page</div>
+      </div>
+      <div>
+        <img src="fk_image12.png" alt="Checkout high-fidelity">
+        <div class="figure-caption">Checkout</div>
+      </div>
+    </div>
+    <div style="margin-top: 2rem;">
+      <a href="https://www.figma.com/proto/h5AGqmauV76hZjt4Gmhnls/Flame-kobab?node-id=385-1847&t=HZxNo2XBxLWgQVnw-1" target="_blank" class="btn-primary">View Figma Prototype →</a>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Reflection</div>
+    <h2>What I Learned</h2>
+    <p>Through this project, which was one of my first as a UX student, I learned the significance of understanding users' needs throughout the design process. The most effective approach is by meticulously documenting and consistently referring back to all research findings at every stage of design.</p>
+    <div class="highlight-box">
+      <p>Next step: Design a profile section where users can access previous orders and reorder with one click, and streamline the registration process to make it more user-friendly.</p>
+    </div>
+  </div>
+
+</div>
+<footer>© 2026 Sorour Askarzadeh · <a href="index.html" style="color: rgba(255,255,255,0.4);">Back to Portfolio</a></footer>
+</body>
+</html>

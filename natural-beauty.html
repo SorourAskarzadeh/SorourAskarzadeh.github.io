@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natural Beauty – Sorour Askarzadeh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --coral: #D85A30; --coral-light: #FAECE7; --coral-dark: #993C1D;
+    --green: #3B6D11; --green-light: #EAF3DE;
+    --purple: #534AB7; --purple-light: #EEEDFE;
+    --ink: #1a1a1a; --ink-soft: #4a4a4a;
+    --bg: #FAFAF8; --border: rgba(0,0,0,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem; background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
+  .nav-back { font-size: 0.88rem; color: var(--ink-soft); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--coral); }
+
+  .hero { padding: 10rem 4rem 6rem; background: var(--green-light); position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 80px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+  .hero-inner { max-width: 800px; }
+  .project-tag { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--green); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem; border: 1px solid rgba(59,109,17,0.2); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1.05; color: var(--ink); margin-bottom: 1.2rem; }
+  .hero-sub { font-size: 1.1rem; font-weight: 300; line-height: 1.75; color: var(--ink-soft); max-width: 600px; margin-bottom: 2rem; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
+  .meta-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.2rem; }
+  .meta-value { font-size: 0.9rem; color: var(--ink); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: all 0.2s; }
+  .btn-primary:hover { background: #27500A; transform: translateY(-1px); }
+  .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 14px 28px; border-radius: 100px; text-decoration: none; border: 1.5px solid var(--ink); transition: all 0.2s; }
+  .btn-outline:hover { background: var(--ink); color: white; }
+
+  .content { max-width: 860px; margin: 0 auto; padding: 4rem; }
+  .section-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.6rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--ink); margin-bottom: 1.2rem; line-height: 1.2; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; margin-top: 2rem; }
+  p { font-size: 1rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 1.2rem; }
+  ul { padding-left: 1.2rem; margin-bottom: 1.2rem; }
+  ul li { font-size: 0.95rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 0.4rem; }
+
+  .case-section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
+  .case-section:last-child { border-bottom: none; }
+
+  .figure-block { margin: 2rem 0; }
+  .figure-block img { width: 100%; border-radius: 16px; border: 1px solid var(--border); display: block; }
+  .figure-caption { font-size: 0.78rem; color: var(--ink-soft); text-align: center; margin-top: 0.6rem; font-style: italic; }
+
+  .figure-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; align-items: start; }
+  .figure-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0; align-items: start; }
+  .figure-grid-2 img, .figure-grid-3 img { width: 100%; border-radius: 12px; border: 1px solid var(--border); display: block; }
+
+  .highlight-box { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem; margin: 1.5rem 0; }
+  .highlight-box p { margin: 0; color: var(--ink); font-style: italic; }
+
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .problem-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+  .problem-card .label { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--coral); margin-bottom: 0.4rem; }
+  .problem-card .solution { font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-top: 0.8rem; margin-bottom: 0.3rem; }
+  .problem-card p { font-size: 0.88rem; margin: 0; }
+
+  .process-steps { display: flex; margin: 2rem 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .process-step { flex: 1; padding: 1rem; text-align: center; border-right: 1px solid var(--border); background: white; }
+  .process-step:last-child { border-right: none; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; color: var(--green); margin-bottom: 0.3rem; }
+  .step-name { font-size: 0.78rem; font-weight: 500; color: var(--ink); }
+
+  footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 1.5rem; font-size: 0.78rem; margin-top: 4rem; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 8rem 1.5rem 4rem; }
+    .content { padding: 2rem 1.5rem; }
+    .figure-grid-2, .figure-grid-3 { grid-template-columns: 1fr; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .process-steps { flex-direction: column; }
+    .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .process-step:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">SA.</a>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="project-tag">UX LAND Boot Camp · Fall 2023</div>
+    <h1>Natural Beauty</h1>
+    <p class="hero-sub">A full UX/UI design project for a vegan, cruelty-free cosmetics e-commerce website and mobile app — from user research to high-fidelity prototype.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-value">Sep – Dec 2023 (3 months)</div></div>
+      <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">UX/UI Designer</div></div>
+      <div class="meta-item"><div class="meta-label">Team</div><div class="meta-value">Sorour Askarzadeh, Shamim Validi</div></div>
+      <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma, Miro, Photoshop, Canva</div></div>
+    </div>
+    <div class="btn-row">
+      <a href="https://www.figma.com/proto/U1loeNlVI9tjkT3qweHYdh/natural-neauty?node-id=2-10288&t=CXTI8lPI4bRze2Sk-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A10288&show-proto-sidebar=1" target="_blank" class="btn-primary">View Website Prototype →</a>
+      <a href="https://www.figma.com/proto/U1loeNlVI9tjkT3qweHYdh/natural-neauty?node-id=682-7341&t=r2bwJgNesO0h6qR5-1&scaling=scale-down&content-scaling=fixed&page-id=1%3A2&starting-point-node-id=1%3A2086" target="_blank" class="btn-outline">View App Prototype →</a>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="case-section">
+    <div class="section-label">Overview</div>
+    <h2>The Project</h2>
+    <p>Natural Beauty is an e-commerce website and mobile app that sells vegan, cruelty-free cosmetics with refillable containers and an AI-powered product recommendation feature. Our goal was to design a purchase experience that is easier, clearer, and more trustworthy for users.</p>
+    <div class="figure-grid-2">
+      <div>
+        <img src="natural-beauty-website.gif" alt="Natural Beauty website">
+        <div class="figure-caption">Natural Beauty website</div>
+      </div>
+      <div>
+        <img src="natural-beauty-app.gif" alt="Natural Beauty mobile app">
+        <div class="figure-caption">Natural Beauty mobile app</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Process</div>
+    <h2>Design Process</h2>
+    <p>We followed the Double Diamond method, rooted in Design Thinking, moving iteratively between stages as the project evolved.</p>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-num">01</div><div class="step-name">Discover</div></div>
+      <div class="process-step"><div class="step-num">02</div><div class="step-name">Define</div></div>
+      <div class="process-step"><div class="step-num">03</div><div class="step-name">Develop</div></div>
+      <div class="process-step"><div class="step-num">04</div><div class="step-name">Deliver</div></div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Discover</div>
+    <h2>Understanding the Problem</h2>
+    <h3>Competitive Analysis</h3>
+    <p>We gathered essential data by comparing approximately 70 cosmetics websites across multiple dimensions. This allowed us to identify patterns and gaps across the market.</p>
+    <div class="figure-block">
+      <img src="nb_image30.jpg" alt="Competitive analysis table">
+      <div class="figure-caption">Competitive analysis of cosmetics websites</div>
+    </div>
+    <h3>User Interviews</h3>
+    <p>After deriving insights from competitive analysis, we interviewed 10 potential users using the 5W+H framework. Key demands that emerged:</p>
+    <ul>
+      <li>Buying vegan and cruelty-free cosmetics would be a higher priority if products were easy to identify on the website</li>
+      <li>Customers want to know more about the products they buy before purchasing</li>
+      <li>The checkout process should be easy and clear — confusion causes users to abandon their purchase</li>
+    </ul>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Define</div>
+    <h2>Identifying Key Problems</h2>
+    <h3>Affinity Diagram</h3>
+    <p>Using interview data organized into an affinity diagram, we identified four core takeaways about what users need.</p>
+    <div class="figure-block">
+      <img src="nb_image12.png" alt="Affinity diagram">
+      <div class="figure-caption">Affinity diagram organizing user research findings</div>
+    </div>
+    <h3>Persona</h3>
+    <div class="figure-block">
+      <img src="nb_image33.jpg" alt="User persona">
+      <div class="figure-caption">User persona representing our target user</div>
+    </div>
+    <h3>Problems and Solutions</h3>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="label">Problem 1</div>
+        <p>Websites failed to display value propositions — users could not quickly identify vegan or cruelty-free products.</p>
+        <div class="solution">Solution</div>
+        <p>Displayed value propositions prominently on the homepage for immediate recognition.</p>
+      </div>
+      <div class="problem-card">
+        <div class="label">Problem 2</div>
+        <p>Ineffective information architecture caused users to abandon their purchase before completion.</p>
+        <div class="solution">Solution</div>
+        <p>Conducted card sorting and interviews to design a more intuitive architecture with clearly labeled features.</p>
+      </div>
+      <div class="problem-card">
+        <div class="label">Problem 3</div>
+        <p>Insufficient product information left customers needing outside help to make purchase decisions.</p>
+        <div class="solution">Solution</div>
+        <p>Provided comprehensive product information including size, before/after images, and ingredient details.</p>
+      </div>
+      <div class="problem-card">
+        <div class="label">Problem 4</div>
+        <p>A complex AI process made users confused and tired, causing them to refuse to use the feature.</p>
+        <div class="solution">Solution</div>
+        <p>Shortened the AI process and gave it a clearer, more understandable name to reduce friction.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Develop</div>
+    <h2>Designing the Solution</h2>
+    <h3>Information Architecture</h3>
+    <p>We developed a hypothesis for the site map and validated it through 5 closed card sorting tests, ensuring the structure matched users' mental models.</p>
+    <div class="figure-block">
+      <img src="nb_image28.jpg" alt="Information architecture / site map">
+      <div class="figure-caption">Information architecture and site map</div>
+    </div>
+    <h3>Task and User Flow</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image19.jpg" alt="Task flow">
+        <div class="figure-caption">Task flow</div>
+      </div>
+      <div>
+        <img src="nb_image31.jpg" alt="User flow">
+        <div class="figure-caption">User flow</div>
+      </div>
+    </div>
+    <h3>Sketches</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image2.jpg" alt="Website homepage sketch">
+        <div class="figure-caption">Website homepage sketch</div>
+      </div>
+      <div>
+        <img src="nb_image10.jpg" alt="Mobile app homepage sketch">
+        <div class="figure-caption">Mobile app homepage sketch</div>
+      </div>
+    </div>
+    <h3>Wireframes</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image35.jpg" alt="Website homepage wireframe">
+        <div class="figure-caption">Website homepage wireframe</div>
+      </div>
+      <div>
+        <img src="nb_image5.jpg" alt="Mobile app homepage wireframe">
+        <div class="figure-caption">Mobile app homepage wireframe</div>
+      </div>
+    </div>
+    <h3>Mood Board</h3>
+    <div class="figure-block">
+      <img src="nb_image36.jpg" alt="Mood board">
+      <div class="figure-caption">Mood board defining the visual identity</div>
+    </div>
+    <h3>UI Kit</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image34.jpg" alt="Website UI kit">
+        <div class="figure-caption">Website UI kit</div>
+      </div>
+      <div>
+        <img src="nb_image14.jpg" alt="Mobile app UI kit">
+        <div class="figure-caption">Mobile app UI kit</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Deliver</div>
+    <h2>High-Fidelity Prototype</h2>
+    <h3>Website</h3>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image23.jpg" alt="Website homepage">
+        <div class="figure-caption">Homepage</div>
+      </div>
+      <div>
+        <img src="nb_image26.jpg" alt="Website category page">
+        <div class="figure-caption">Category page</div>
+      </div>
+    </div>
+    <div class="figure-grid-2">
+      <div>
+        <img src="nb_image32.jpg" alt="Website product page">
+        <div class="figure-caption">Product page</div>
+      </div>
+      <div>
+        <img src="nb_image16.jpg" alt="Shopping cart overlay">
+        <div class="figure-caption">Shopping cart overlay</div>
+      </div>
+    </div>
+    <h3>Mobile App</h3>
+    <div class="figure-grid-3">
+      <div>
+        <img src="nb_image8.jpg" alt="Splash screen">
+        <div class="figure-caption">Splash screen</div>
+      </div>
+      <div>
+        <img src="nb_image13.jpg" alt="App homepage">
+        <div class="figure-caption">Homepage</div>
+      </div>
+      <div>
+        <img src="nb_image24.jpg" alt="Category page">
+        <div class="figure-caption">Category page</div>
+      </div>
+    </div>
+    <div class="figure-grid-3">
+      <div>
+        <img src="nb_image22.jpg" alt="Product page">
+        <div class="figure-caption">Product page</div>
+      </div>
+      <div>
+        <img src="nb_image20.jpg" alt="AI process">
+        <div class="figure-caption">AI process</div>
+      </div>
+      <div>
+        <img src="nb_image9.jpg" alt="Checkout process">
+        <div class="figure-caption">Checkout process</div>
+      </div>
+    </div>
+    <div style="margin-top: 2rem;" class="btn-row">
+      <a href="https://www.figma.com/proto/U1loeNlVI9tjkT3qweHYdh/natural-neauty?node-id=2-10288&t=CXTI8lPI4bRze2Sk-1" target="_blank" class="btn-primary">View Website Prototype →</a>
+      <a href="https://www.figma.com/proto/U1loeNlVI9tjkT3qweHYdh/natural-neauty?node-id=682-7341&t=r2bwJgNesO0h6qR5-1" target="_blank" class="btn-outline">View App Prototype →</a>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <div class="section-label">Reflection</div>
+    <h2>What I Learned</h2>
+    <ul>
+      <li>Encouraging open dialogue and feedback among team members can enhance resilience and prevent burnout.</li>
+      <li>Without understanding the needs and wants of actual users, it is impossible to design a powerful e-commerce experience.</li>
+      <li>A visual style corresponding to the nature of the business helps users understand the website's purpose from the very first glance.</li>
+      <li>Effective communication harnesses diverse perspectives, leading to better decision-making and innovative solutions.</li>
+    </ul>
+    <div class="highlight-box">
+      <p>Next step: Design the AI skin guide feature in a way that makes it effortless for users to find products suited to their skin type — the area where users struggled most.</p>
+    </div>
+  </div>
+
+</div>
+<footer>© 2026 Sorour Askarzadeh · <a href="index.html" style="color: rgba(255,255,255,0.4);">Back to Portfolio</a></footer>
+</body>
+</html>
